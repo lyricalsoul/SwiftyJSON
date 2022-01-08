@@ -1238,7 +1238,6 @@ extension Content: Comparable {
     }
 
     static func < (lhs: Content, rhs: Content) -> Bool {
-
         switch (lhs, rhs) {
         case let (.number(l), .number(r)):  return l < r
         case let (.string(l), .string(r)):  return l < r
@@ -1304,6 +1303,7 @@ func != (lhs: NSNumber, rhs: NSNumber) -> Bool {
     return !(lhs == rhs)
 }
 
+#if os(macOS) || os(watchOS) || os(iOS) || os(tvOS)
 func < (lhs: NSNumber, rhs: NSNumber) -> Bool {
 
     switch (lhs.isBool, rhs.isBool) {
@@ -1312,6 +1312,7 @@ func < (lhs: NSNumber, rhs: NSNumber) -> Bool {
     default:            return lhs.compare(rhs) == .orderedAscending
     }
 }
+#endif
 
 func > (lhs: NSNumber, rhs: NSNumber) -> Bool {
 
